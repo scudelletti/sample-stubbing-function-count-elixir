@@ -1,6 +1,10 @@
 defmodule MockerTest do
   use ExUnit.Case
 
+  test "has struct" do
+    assert %Mocker{}
+  end
+
   test "register function with multiple arguments and count its calls" do
     fun = fn (a, b, c) -> {a, b, c} end
 

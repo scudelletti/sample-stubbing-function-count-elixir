@@ -3,6 +3,12 @@ defmodule MockTest do
 
   test "generates different strings" do
     refute Mock.generate == Mock.generate
+    assert is_binary(Mock.generate)
+  end
+
+  test "uses generate/0 function by default" do
+    assert {:ok, value} = Mock.generate_for()
+    assert is_binary(value)
   end
 
   test "uses stub" do
