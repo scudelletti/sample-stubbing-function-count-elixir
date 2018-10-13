@@ -6,7 +6,7 @@ defmodule MockerTest do
   end
 
   test "register function with multiple arguments and count its calls" do
-    fun = fn (a, b, c) -> {a, b, c} end
+    fun = fn a, b, c -> {a, b, c} end
 
     {agent, function} = Mocker.register(fun, 3)
 
@@ -18,7 +18,7 @@ defmodule MockerTest do
   end
 
   test "register function without arguments and count its calls" do
-    fun = fn () -> :nothing end
+    fun = fn -> :nothing end
 
     {agent, function} = Mocker.register(fun, 0)
 
@@ -29,7 +29,7 @@ defmodule MockerTest do
   end
 
   test "register function without arguments, count its calls and returns controlled results" do
-    {agent, function} = Mocker.register([1,2,3], 0)
+    {agent, function} = Mocker.register([1, 2, 3], 0)
 
     assert Mocker.counter(agent) == 0
     assert function.() == 1
@@ -39,7 +39,7 @@ defmodule MockerTest do
   end
 
   test "register function with multiple arguments, count its calls and returns controlled results" do
-    {agent, function} = Mocker.register([1,2,3], 2)
+    {agent, function} = Mocker.register([1, 2, 3], 2)
 
     assert Mocker.counter(agent) == 0
     assert function.(1, 2) == 1
